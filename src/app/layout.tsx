@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Sidebar from "../components/Sidebar";
-import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "Alexander Oxales",
@@ -27,7 +26,7 @@ export default function RootLayout({
       >
         <main className="flex">
           <Sidebar />
-          <div className="flex-1 p-5 md:p-10 overflow-auto md:ml-[250px] lg:ml-[300px]">
+          <div className="flex-1 p-5 sm:px-10 sm:pt-10 overflow-auto sm:ml-[250px] lg:ml-[300px]">
             {children}
           </div>
         </main>

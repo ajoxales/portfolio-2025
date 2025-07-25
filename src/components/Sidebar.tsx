@@ -2,26 +2,35 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Github, Linkedin, Mail, Facebook } from "lucide-react";
+import { Github, Linkedin, Mail, Facebook, MapPin } from "lucide-react";
 import DarkModeToggle from "./DarkModeToggle";
 
 export default function Sidebar() {
   return (
-    <div className="hidden md:block">
-      <section className="fixed h-screen md:py-10 w-[250px] lg:w-[300px] border-r border-[#e5e5e5] dark:border-white/20 px-10 h-screen flex flex-col justify-between">
+    <div className="hidden sm:block">
+      <section className="fixed h-screen sm:py-10 w-[250px] lg:w-[300px] border-r border-[#e5e5e5] dark:border-white/20 px-10 h-screen flex flex-col justify-between">
         <div>
           <Image
             src="/images/profile-photo-2.png"
             alt="Profile Photo"
             width={500}
             height={500}
-            className="animate-fade-up rounded-lg w-full h-auto mb-5 border border-[#e5e5e5] dark:border-white/50"
+            className="animate-fade-up rounded-lg w-full h-auto mb-5"
             style={{ animationDelay: "100ms" }}
           />
-          <h1 className="animate-fade-in text-xl lg:text-2xl font-bold tracking-tight mb-3">
+          <h1 className="animate-fade-in text-xl lg:text-2xl font-bold tracking-tight mb-2">
             Alexander Joseph
-            <br /> Oxales
+            <br /> Oxales{" "}
+            <span className="text-sm font-normal tracking-normal text-gray-500 dark:text-gray-400">
+              (he/him)
+            </span>
           </h1>
+          <div className="animate-fade-in delay-100 flex items-center gap-1 mb-3">
+            <MapPin className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              Dasmarinas, Cavite
+            </p>
+          </div>
           <p className="animate-fade-in text-sm lg:text-base text-gray-500 dark:text-gray-400 mb-3">
             Front end developer with a passion for building web applications.
           </p>

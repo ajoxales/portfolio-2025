@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -7,16 +9,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Github,
-  Linkedin,
-  Facebook,
-  SunMoon,
-} from "lucide-react";
+import { Mail, Phone, MapPin, Github, Linkedin, Facebook } from "lucide-react";
 import DarkModeToggle from "@/components/DarkModeToggle";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const techUsed = {
@@ -39,38 +34,45 @@ export default function Home() {
 
   return (
     <section className="container max-w-6xl mx-auto">
-      <div className="grid md:hidden grid-cols-1">
+      <div className="grid sm:hidden grid-cols-1">
         <Card className="animate-fade-up mb-5">
           <CardHeader>
-            <CardTitle className="text-center text-2xl font-bold">
-              Alexander Joseph Oxales
+            <CardTitle className="text-2xl font-bold">
+              Alexander Joseph Oxales{" "}
+              <span className="text-sm font-normal tracking-normal text-gray-500 dark:text-gray-400">
+                (he/him)
+              </span>
             </CardTitle>
-            <CardDescription className="text-center text-sm mb-1">
+            <CardDescription className="text-start text-sm mb-1">
+              <div className="flex items-center gap-1 mb-3 justify-start">
+                <MapPin className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Dasmarinas, Cavite
+                </p>
+              </div>
               Front end developer with a passion for building web applications.
             </CardDescription>
-            <CardContent>
-              <div className="flex justify-center">
-                <span className="inline-block text-sky-800 dark:text-sky-200 text-xs font-semibold px-3 py-1 rounded-full border border-sky-200 dark:border-sky-700 bg-linear-to-t from-sky-500/20 to-sky-500/10">
-                  Open to work
-                </span>
-              </div>
+            <CardContent className="px-0">
+              <span className="inline-block text-sky-800 dark:text-sky-200 text-xs font-semibold px-3 py-1 rounded-full border border-sky-200 dark:border-sky-700 bg-linear-to-t from-sky-500/20 to-sky-500/10">
+                Open to work
+              </span>
             </CardContent>
           </CardHeader>
         </Card>
-        <Card className="animate-fade-up mb-5">
-          <CardContent>
-            <Image
-              src="/images/profile-photo-2.png"
-              alt="Profile Photo"
-              width={500}
-              height={500}
-              className="rounded-lg w-full h-auto"
-            />
-          </CardContent>
+        <Card className="animate-fade-up mb-5 py-0">
+          <Image
+            src="/images/profile-photo-2.png"
+            alt="Profile Photo"
+            width={500}
+            height={500}
+            className="rounded-lg w-full h-auto"
+          />
         </Card>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 mb-5">
-        <Card className="animate-fade-up col-span-2 md:mb-0 mb-5">
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-5 lg:gap-5 mb-5">
+        {/* About Me */}
+        <Card className="animate-fade-up col-span-1 md:col-span-2 lg:col-span-2">
           <CardHeader>
             <CardTitle className="mb-1">About Me</CardTitle>
             <CardDescription className="space-y-2 leading-relaxed">
@@ -91,8 +93,11 @@ export default function Home() {
             </CardDescription>
           </CardHeader>
         </Card>
-
-        <Card className="animate-fade-up" style={{ animationDelay: "100ms" }}>
+        {/* Get in Touch */}
+        <Card
+          className="animate-fade-up col-span-2 lg:col-span-1 order-last lg:order-none"
+          style={{ animationDelay: "100ms" }}
+        >
           <CardHeader className="-mb-2">
             <CardTitle className="mb-1">Get in Touch</CardTitle>
           </CardHeader>
@@ -117,10 +122,10 @@ export default function Home() {
             </CardDescription>
           </CardContent>
         </Card>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 mb-5">
+
+        {/* Technologies Used */}
         <Card
-          className="animate-fade-up md:mb-0 mb-5"
+          className="animate-fade-up col-span-2 lg:col-span-1"
           style={{ animationDelay: "200ms" }}
         >
           <CardHeader className="-mb-2">
@@ -144,8 +149,10 @@ export default function Home() {
             ))}
           </CardContent>
         </Card>
+
+        {/* Experience */}
         <Card
-          className="animate-fade-up col-span-2"
+          className="animate-fade-up col-span-2 lg:col-span-2"
           style={{ animationDelay: "300ms" }}
         >
           <CardHeader>
@@ -188,9 +195,12 @@ export default function Home() {
             </CardDescription>
           </CardContent>
         </Card>
-      </div>
-      <div>
-        <Card className="animate-fade-up" style={{ animationDelay: "400ms" }}>
+
+        {/* Featured Projects */}
+        <Card
+          className="animate-fade-up col-span-1 md:col-span-2 lg:col-span-3"
+          style={{ animationDelay: "400ms" }}
+        >
           <CardHeader className="-mb-4">
             <CardTitle>Featured Projects</CardTitle>
           </CardHeader>
@@ -245,7 +255,7 @@ export default function Home() {
           </CardContent>
         </Card>
       </div>
-      <div className="block md:hidden">
+      <div className="block sm:hidden">
         <Card className="mt-5">
           <CardContent className="flex justify-between items-center">
             <div className="flex items-center gap-4">
@@ -269,6 +279,7 @@ export default function Home() {
           </CardContent>
         </Card>
       </div>
+      <Footer />
     </section>
   );
 }
