@@ -21,9 +21,7 @@ export default function RootLayout({
           href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='1em' font-size='85'>🚀</text></svg>"
         />
       </head>
-      <body
-        className={`container max-w-7xl mx-auto antialiased font-sans bg-white dark:bg-black`}
-      >
+      <body className={`antialiased font-sans bg-white dark:bg-black`}>
         <main className="flex">
           <Sidebar />
           <div className="flex-1 p-5 sm:px-10 sm:pt-10 overflow-auto sm:ml-[250px] lg:ml-[300px]">

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -9,11 +10,72 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Mail, Phone, MapPin, Github, Linkedin, Facebook } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Facebook,
+  FileSearch,
+} from "lucide-react";
 import DarkModeToggle from "@/components/DarkModeToggle";
 import Footer from "@/components/Footer";
 
+// Inside your component
+const projects = [
+  {
+    id: 1,
+    title: "Balboa Digital LMS (Capstone Project)",
+    description:
+      "Developed an LMS for employee training, replacing spreadsheet-based tracking. Enabled secure logins, progress tracking, and course management.",
+    stack: ["Next.js", "CoreUI", "Bootstrap", "Supabase", "AWS"],
+    images: [
+      "/images/projects/lms-1.png",
+      "/images/projects/lms-2.png",
+      "/images/projects/lms-3.png",
+    ],
+  },
+  {
+    id: 2,
+    title: "Personal Portfolio",
+    description:
+      "A responsive developer portfolio showcasing my skills, experience, and featured projects.",
+    stack: ["Next.js", "Tailwind CSS", "Shadcn UI", "Lucide Icons"],
+    images: ["/images/projects/portfolio.png"],
+  },
+  {
+    id: 3,
+    title: "Website Showcase",
+    description:
+      "Selected previews from past projects I contributed to. All assets and branding have been replaced for confidentiality.",
+    stack: ["Next.js", "Tailwind CSS", "Shadcn UI", "Font Awesome Icons"],
+    images: [
+      "/images/projects/showcase-1.png",
+      "/images/projects/showcase-2.png",
+      "/images/projects/showcase-3.png",
+    ],
+  },
+];
+
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  stack: string[];
+  images: string[];
+}
+
 export default function Home() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
   const techUsed = {
     Programming: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Python"],
     "Frameworks & Tools": [
@@ -33,7 +95,7 @@ export default function Home() {
   };
 
   return (
-    <section className="container max-w-6xl mx-auto">
+    <section className="container ">
       <div className="grid sm:hidden grid-cols-1">
         <Card className="animate-fade-up mb-5">
           <CardHeader>
@@ -159,7 +221,7 @@ export default function Home() {
             <CardTitle>Experience</CardTitle>
             <CardDescription className="-mb-2">
               A quick overview of my journey so far — building, learning, and
-              growing as a front-end developer.
+              growing as a web developer.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -184,8 +246,15 @@ export default function Home() {
                 <h3 className="text-md font-semibold dark:text-white text-black/70">
                   Software Engineering Intern
                 </h3>
-                <p className="text-sm text-muted-foreground">
-                  First Mate Technologies · Jan 2025 - Apr 2025
+                <p className="text-sm text-muted-foreground ">
+                  <Link
+                    href="https://www.firstmate.tech/"
+                    target="_blank"
+                    className="underline"
+                  >
+                    First Mate Technologies
+                  </Link>{" "}
+                  · Jan 2025 - Apr 2025
                 </p>
                 <p className="mt-1 text-sm">
                   Built UI for an AI tool using Python, and assisted web
@@ -205,55 +274,65 @@ export default function Home() {
             <CardTitle>Featured Projects</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div>
-              <h3 className="text-sm font-semibold">Balboa Digital LMS</h3>
-              <p className="text-sm text-muted-foreground">
-                Developed an LMS for employee training, replacing
-                spreadsheet-based tracking. Enabled secure logins, progress
-                tracking, and course management.
-              </p>
-              <div className="mt-1 flex flex-wrap gap-1 text-sm items-center">
-                <span className="inline-flex items-center rounded-sm border border-gray-500/50 px-2 py-0.5 text-xs dark:text-white text-black/70">
-                  Next.js
-                </span>
-                <span className="inline-flex items-center rounded-sm border border-gray-500/50 px-2 py-0.5 text-xs dark:text-white text-black/70">
-                  CoreUI
-                </span>
-                <span className="inline-flex items-center rounded-sm border border-gray-500/50 px-2 py-0.5 text-xs dark:text-white text-black/70">
-                  Bootstrap
-                </span>
-                <span className="inline-flex items-center rounded-sm border border-gray-500/50 px-2 py-0.5 text-xs dark:text-white text-black/70">
-                  Supabase
-                </span>
-                <span className="inline-flex items-center rounded-sm border border-gray-500/50 px-2 py-0.5 text-xs dark:text-white text-black/70">
-                  AWS
-                </span>
+            {projects.map((project) => (
+              <div key={project.id}>
+                <div className="flex items-center gap-2">
+                  <h3 className="text-sm font-semibold">{project.title}</h3>
+                  <button
+                    className="text-sm text-muted-foreground hover:text-cyan-500 transition-colors cursor-pointer"
+                    onClick={() => setSelectedProject(project)}
+                  >
+                    <FileSearch className="w-4 h-4" />
+                  </button>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  {project.description}
+                </p>
+                <div className="mt-1 flex flex-wrap gap-1 text-sm items-center">
+                  {project.stack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="inline-flex items-center rounded-sm border border-gray-500/50 px-2 py-0.5 text-xs dark:text-white text-black/70"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-semibold">Personal Portfolio</h3>
-              <p className="text-sm text-muted-foreground">
-                A responsive developer portfolio showcasing my skills,
-                experience, and featured projects.
-              </p>
-              <div className="mt-1 flex flex-wrap gap-1 text-sm items-center">
-                <span className="inline-flex items-center rounded-sm border border-gray-500/50 px-2 py-0.5 text-xs dark:text-white text-black/70">
-                  Next.js
-                </span>
-                <span className="inline-flex items-center rounded-sm border border-gray-500/50 px-2 py-0.5 text-xs dark:text-white text-black/70">
-                  Tailwind CSS
-                </span>
-                <span className="inline-flex items-center rounded-sm border border-gray-500/50 px-2 py-0.5 text-xs dark:text-white text-black/70">
-                  Shadcn UI
-                </span>
-                <span className="inline-flex items-center rounded-sm border border-gray-500/50 px-2 py-0.5 text-xs dark:text-white text-black/70">
-                  Lucide Icons
-                </span>
-              </div>
-            </div>
+            ))}
           </CardContent>
         </Card>
+
+        {/* Dynamic Dialog */}
+        <Dialog
+          open={!!selectedProject}
+          onOpenChange={() => setSelectedProject(null)}
+        >
+          {selectedProject && (
+            <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-scroll [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none]">
+              <DialogHeader>
+                <DialogTitle>{selectedProject.title}</DialogTitle>
+                <DialogDescription>
+                  {selectedProject.description}
+                </DialogDescription>
+              </DialogHeader>
+
+              {/* Scrollable Image List */}
+              <div className="flex flex-col gap-3 mt-4 ">
+                {selectedProject.images.map((src: string, index: number) => (
+                  <Image
+                    key={index}
+                    src={src}
+                    alt={`${selectedProject.title} Preview ${index + 1}`}
+                    width={800}
+                    height={400}
+                    className="rounded-lg border object-cover w-auto"
+                  />
+                ))}
+              </div>
+            </DialogContent>
+          )}
+        </Dialog>
       </div>
       <div className="block sm:hidden">
         <Card className="mt-5">

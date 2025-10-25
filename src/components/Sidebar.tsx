@@ -8,7 +8,7 @@ import DarkModeToggle from "./DarkModeToggle";
 export default function Sidebar() {
   return (
     <div className="hidden sm:block">
-      <section className="fixed h-screen sm:py-10 w-[250px] lg:w-[300px] border-r border-[#e5e5e5] dark:border-white/20 px-10 h-screen flex flex-col justify-between">
+      <section className="fixed sm:py-10 w-[250px] lg:w-[300px] border-r border-[#e5e5e5] dark:border-white/20 px-10 h-screen flex flex-col justify-between">
         <div>
           <Image
             src="/images/profile-photo-2.png"
