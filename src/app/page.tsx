@@ -38,6 +38,9 @@ const projects = [
       "Developed an LMS for employee training, replacing spreadsheet-based tracking. Enabled secure logins, progress tracking, and course management.",
     stack: ["Next.js", "CoreUI", "Bootstrap", "Supabase", "AWS"],
     images: [
+      "/images/projects/lms-landing-1.png",
+      "/images/projects/lms-landing-2.png",
+      "/images/projects/lms-landing-3.png",
       "/images/projects/lms-1.png",
       "/images/projects/lms-2.png",
       "/images/projects/lms-3.png",
