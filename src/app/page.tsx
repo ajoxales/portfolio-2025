@@ -25,6 +25,7 @@ import {
   Linkedin,
   Facebook,
   FileSearch,
+  SquareArrowOutUpRight,
 } from "lucide-react";
 import DarkModeToggle from "@/components/DarkModeToggle";
 import Footer from "@/components/Footer";
@@ -56,6 +57,20 @@ const projects = [
   },
   {
     id: 3,
+    title: "Multiple Activities App",
+    description:
+      "A full-stack Next.js app using Supabase for auth, database, and storage. It includes five modular CRUD tools—todo lists, a Drive Lite file manager, food and Pokémon review apps with image uploads, and a markdown task manager—all in one platform.",
+    stack: ["Next.js", "Tailwind CSS", "Supabase", "Shadcn UI"],
+    images: [
+      "/images/projects/multiple-activities-1.png",
+      "/images/projects/multiple-activities-2.png",
+      "/images/projects/multiple-activities-3.png",
+      "/images/projects/multiple-activities-4.png",
+    ],
+    url: "https://next-multiple-activities-app-aj.vercel.app/",
+  },
+  {
+    id: 4,
     title: "Website Showcase",
     description:
       "Selected previews from past projects I contributed to. All assets and branding have been replaced for confidentiality.",
@@ -83,7 +98,7 @@ interface Project {
   title: string;
   description: string;
   stack: string[];
-  images: string[];
+  images?: string[];
 }
 
 export default function Home() {
@@ -297,6 +312,17 @@ export default function Home() {
                   >
                     <FileSearch className="w-4 h-4" />
                   </button>
+                  {project.url ? (
+                    <Link
+                      href={project.url}
+                      target="_blank"
+                      className="text-sm text-muted-foreground hover:text-cyan-500 transition-colors cursor-pointer"
+                    >
+                      <SquareArrowOutUpRight className="w-4 h-4" />
+                    </Link>
+                  ) : (
+                    <></>
+                  )}
                 </div>
                 <p className="text-sm text-muted-foreground">
                   {project.description}
@@ -332,16 +358,18 @@ export default function Home() {
 
               {/* Scrollable Image List */}
               <div className="flex flex-col gap-3 mt-4 ">
-                {selectedProject.images.map((src: string, index: number) => (
-                  <Image
-                    key={index}
-                    src={src}
-                    alt={`${selectedProject.title} Preview ${index + 1}`}
-                    width={800}
-                    height={400}
-                    className="rounded-lg border object-cover w-auto"
-                  />
-                ))}
+                {(selectedProject.images ?? []).map(
+                  (src: string, index: number) => (
+                    <Image
+                      key={index}
+                      src={src}
+                      alt={`${selectedProject.title} Preview ${index + 1}`}
+                      width={800}
+                      height={400}
+                      className="rounded-lg border object-cover w-auto"
+                    />
+                  )
+                )}
               </div>
             </DialogContent>
           )}
