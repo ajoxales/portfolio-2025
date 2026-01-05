@@ -93,6 +93,7 @@ const projects = [
       "/images/projects/showcase-todo.png",
       "/images/projects/showcase-ip.png",
     ],
+    url: "https://alex-ai.multiscreensite.com/",
   },
   {
     id: 5,
